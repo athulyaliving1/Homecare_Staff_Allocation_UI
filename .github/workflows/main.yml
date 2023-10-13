@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BUCKET: homecaredashboard
+      BUCKET: homecarestaffallocation
       DIST: build
       REGION: ap-south-1
       DIST_ID: E2MWCN4NV5B4WO
