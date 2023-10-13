@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
 
@@ -48,16 +49,16 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
       
     return (
        
-        <div class="inline-flex mt-2 xs:mt-0 p-3">
+        <div className="inline-flex p-3 mt-2 xs:mt-0">
              <button
-        className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l"
+        className="px-4 py-2 text-sm font-semibold transition duration-150 bg-[#12486B] rounded-l text-indigo-50 hover:bg-[#419197]"
         onClick={prevSet}
       >
         Prev Set
       </button>
       &nbsp; &nbsp;
         <button
-        class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l" onClick={prevPage} >
+        className="px-4 py-2 text-sm font-semibold transition duration-150 bg-[#12486B] rounded-l text-indigo-50 hover:bg-[#419197]" onClick={prevPage} >
         Prev
         </button>
         &nbsp; &nbsp;
@@ -65,7 +66,7 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
           
             <span key={pgNumber} className= {`page-item ${currentPage === pgNumber ? 'active' : ''} pl-2`} >
                 <button
-                class="page-link text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded" onClick={() => setCurrentPage(pgNumber)}>
+                className="px-4 py-2 text-sm font-semibold transition duration-150 bg-[#12486B] rounded page-link text-indigo-50 hover:bg-[#419197]" onClick={() => setCurrentPage(pgNumber)}>
                 {pgNumber}
                 </button>
             </span>
@@ -73,12 +74,12 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
         ))}
         &nbsp; &nbsp;
         <button
-        class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r" onClick={nextPage}>
+        className="px-4 py-2 text-sm font-semibold transition duration-150 bg-[#12486B] rounded-r text-indigo-50 hover:bg-[#419197]" onClick={nextPage}>
         Next
         </button>
         &nbsp; &nbsp;
       <button
-        className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r"
+        className="px-4 py-2 text-sm font-semibold transition duration-150 bg-[#12486B] rounded-r text-indigo-50 hover:bg-[#419197]"
         onClick={nextSet}
       >
         Next Set
@@ -86,5 +87,14 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
         </div>
     )
 }
+
+
+Pagination.propTypes = {
+  nPages: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
+};
+
+
 
 export default Pagination
