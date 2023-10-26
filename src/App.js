@@ -4,6 +4,8 @@ import axios from 'axios';
 import Records from './Records';
 import Pagination from './Pagination';
 import { API_URL } from './utilities/API_URL';
+import Select from 'react-select';
+
 function App() {
 
   const [fromDate, setFromDate] = useState('');
@@ -13,24 +15,26 @@ function App() {
   const [branches, setBranches] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState("");
   const [selectedService, setSelectedServices] = useState("");
-  const [selectedCaregiver, setSelectedCaregiver] = useState("");
+  // const [selectedCaregiver, setSelectedCaregiver] = useState("");
   // const [selectedPatient, setSelectedPatient] = useState("");
 
   const [services, setServices] = useState([]);
   const [status, setStatus] = useState([]);
-  const [caregiver, setcaregiver] = useState([]);
+  // const [caregiver, setcaregiver] = useState([]);
+  const [selectedStaffCaregiver, setSelectedStaffCaregiver] = useState(null);
+  const [caregiveroption, setSelectedCaregiveroption] = useState(null);
   // const [patient, setpatient] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
   useEffect(() => {
     axios.post(`${API_URL}/reports`).then((response) => {
       setPost(response.data.data);
-      //console.log(response.data.data);
+      console.log(response.data.data);
     });
 
     axios.get(`${API_URL}/branches`).then((response) => {
       setBranches(response.data.data);
-      //console.log(response.data.data);
+      console.log(response.data.data);
     });
 
     axios.get(`${API_URL}/services`).then((response) => {
@@ -40,9 +44,21 @@ function App() {
     });
     axios.get(`${API_URL}/caregivers`).then((response) => {
       console.log(response.data.data);
-      setcaregiver(response.data.data);
+      // setcaregiver(response.data.data);
 
+
+      const caregiverdata = response.data.data;
+
+      const caregiveroptions = caregiverdata.map((coption) => ({
+        value: coption.id,
+        label: coption.full_name
+      }))
+
+      setSelectedCaregiveroption(caregiveroptions);
     });
+
+
+
 
     // axios.get(`${API_URL}/patients`).then((response) => {
     //   console.log(response.data.data);
@@ -69,10 +85,10 @@ function App() {
     console.log(e.target.value);
   }
 
-  const handleCaregiver = (e) => {
+  const handleCaregiver = (caregiveroption) => {
 
-    setSelectedCaregiver(e.target.value);
-    console.log(e.target.value);
+    setSelectedStaffCaregiver(caregiveroption);
+    console.log(caregiveroption);
   }
 
   // const handlePatient = (e) => {
@@ -126,7 +142,7 @@ function App() {
 
 
     console.log("Selected React Values:-" + selectedBranch + " " + selectedService + " " + status + " " + fromDate + " " + toDate);
-    axios.post(`${API_URL}/filterreports?from_date=${finalfromDate}&to_date=${finaltoDate}&branch_id=${selectedBranch}&case_status=${status}&service_id=${selectedService}&caregiver_id=${selectedCaregiver}`).then((response) => {
+    axios.post(`${API_URL}/filterreports?from_date=${finalfromDate}&to_date=${finaltoDate}&branch_id=${selectedBranch}&case_status=${status}&service_id=${selectedService}&caregiver_id=${selectedStaffCaregiver}`).then((response) => {
       //console.log(response);
       setPost(response.data.data);
     });
@@ -159,13 +175,11 @@ function App() {
         </div>
 
         <div>
-          <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
-            <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
+          <div className="px-4 py-4 -mx-4 sm:-mx-8 sm:px-8">
+            <div className="">
 
               <div
                 className="grid flex-col items-center px-2 py-2 bg-white border-t xs:flex-row xs:justify-between 2xl:grid-cols-7 xl:grid-cols-4 lg:grid-cols-4">
-
-
                 <div className="flex p-2">
                   <select name="branch_name"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5"
@@ -197,7 +211,7 @@ function App() {
                   <select name="status" id="status" onChange={handleStatus}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5">
                     <option value=""> Status</option>
-                    <option value="Unknown"> Unknown</option>
+                    <option value="Unknown"> Unallocated</option>
                     <option value="Accepted"> Accepted</option>
                     <option value="Rejected"> Rejected</option>
                     <option value="Clocked_In"> Clocked_In</option>
@@ -222,17 +236,15 @@ function App() {
 
                 <div className="flex p-2">
 
-                  <select onChange={handleCaregiver} name="caregiver_name" id="caregiver_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5">
-
-                    <option value="-1"> CareGiver Name</option>
-                    {caregiver.map(item => (
-
-                      <option key={item.id} value={item.id}>{item.full_name}</option>
-
-                    ))
-                    }
-
-                  </select>
+                  <Select
+                    onChange={handleCaregiver}
+                    options={caregiveroption}
+                    value={selectedStaffCaregiver}
+                    name="caregiver_name"
+                    id="caregiver_name"
+                    className="bg-gray-50  text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 "
+                    placeholder="Caregiver Name"
+                  />
 
                 </div>
 

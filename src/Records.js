@@ -128,14 +128,14 @@ const Records = ({ data }) => {
 
                             <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                 <p className="text-gray-900 whitespace-no-wrap ">
-                                    {item.caregiver_name}
+                                    {item.caregiver_name + " " + item.first_name}
                                 </p>
                             </td>
                             <td className="px-5 py-5 text-sm bg-white border-b border-gray-200">
                                 {(item.case_status === 'Unknown') &&
                                     <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-blue-900">
                                         <span aria-hidden className="absolute inset-0 bg-blue-200 rounded-full opacity-50"></span>
-                                        <span className="relative">{item.case_status}</span>
+                                        <span className="relative">Unallocated</span>
                                     </span>
                                 }
                                 {(item.case_status === 'Accepted') &&
