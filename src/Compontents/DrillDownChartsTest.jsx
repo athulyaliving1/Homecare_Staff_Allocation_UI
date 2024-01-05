@@ -8,62 +8,92 @@ import { API_URL } from "../utilities/API_URL";
 drilldown(Highcharts);
 
 function DrillDownChartsTest() {
-    const [chartOptions, setChartOptions] = useState(null);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
-        // Function to fetch data from the API
+
+        // Fetch data using a POST request
         const fetchData = async () => {
             try {
-                const response = await axios.post(`${API_URL}/servicetypetotal`);
-                const responseData = response.data;
-
-                console.log(responseData);
-
-                // Update the chart options with the API response data
-                setChartOptions({
-                    chart: {
-                        type: "column",
-                    },
-                    title: {
-                        text: "Drill Down",
-                    },
-                    series: [
-                        {
-                            name: "Services",
-                            colorByPoint: true,
-                            data: responseData.data.map((item) => ({
-                                name: item.service_type,
-                                y: item.patient_count,
-                                drilldown: item.service_type.toLowerCase().replace(" ", "_"),
-                            })),
-                        },
-                    ],
-                    drilldown: {
-                        series: responseData.data.map((item) => ({
-                            id: item.service_type.toLowerCase().replace(" ", "_"),
-                            data: [
-                                [item.service_type, item.patient_count],
-                                ["Total Services", item.total_services],
-                                ["Long Term Services", item.long_term_services],
-                                ["Short Term Services", item.short_term_services],
-                            ],
-                        })),
-                    },
+                const response = await axios.post(`${API_URL}/servicesdrilldown`, {
+                    // Your POST data
                 });
+
+                setData(response.data.data);
+                console.log(response.data.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.error('Error fetching data:', error);
             }
         };
 
-        // Call the fetch function
         fetchData();
-    }, []); // Empty dependency array ensures that the effect runs once when the component mounts
+    }, []);
+
+    const longTermCount = data.filter((item) => item.service_category_type === 'Long-Term').length;
+    const shortTermCount = data.filter((item) => item.service_category_type === 'Short-Term').length;
+
+    const chartConfig = {
+        chart: {
+            type: 'column',
+        },
+        title: {
+            text: 'Long-Term and Short-Term Service Categories',
+        },
+        xAxis: {
+            type: 'category',
+
+            
+        },
+        yAxis: {
+            title: {
+                text: 'Service Count',
+            },
+        },
+        legend: {
+            enabled: false,
+        },
+        series: [
+            {
+                name: 'Total Services',
+                colorByPoint: true,
+                data: [
+                    {
+                        name: 'Long-Term',
+                        y: longTermCount,
+                        drilldown: 'Long-Term',
+                    },
+                    {
+                        name: 'Short-Term',
+                        y: shortTermCount,
+                        drilldown: 'Short-Term',
+                    },
+                ],
+            },
+        ],
+        drilldown: {
+            series: [
+                {
+                    id: 'Long-Term',
+                    data: data
+                        .filter((item) => item.service_category_type === 'Long-Term')
+                        .map((item) => [item.display_name, item.service_required]),
+                },
+                {
+                    id: 'Short-Term',
+                    data: data
+                        .filter((item) => item.service_category_type === 'Short-Term')
+                        .map((item) => [item.display_name, item.service_required]),
+                },
+            ],
+        },
+    };
+
+
+
 
     return (
-        <div className="App">
-            {chartOptions && (
-                <HighchartsReact highcharts={Highcharts} options={chartOptions} />
-            )}
+        <div>
+            <HighchartsReact highcharts={Highcharts} options={chartConfig} />
         </div>
     );
 }

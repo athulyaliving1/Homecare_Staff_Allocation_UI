@@ -9,9 +9,10 @@ import { API_URL } from "./utilities/API_URL.jsx";
 import LocandChart from "./Compontents/LocandChart.jsx";
 import LocAndStatusCharts from "./Compontents/Locandstatuscharts.jsx";
 // import DrilldownChart from "./Compontents/Drilldowncharts.js";
-import DrillDownChartsTest from "./Compontents/DrillDownChartsTest.jsx";
+// import DrillDownChartsTest from "./Compontents/DrillDownChartsTest.jsx";
 import LocationBasedSchedule from "./Compontents/LocationBasedSchedule.jsx";
 import { Skeleton1 } from "./Compontents/Skeleton.jsx";
+import DrillDownChartsTest from "./Compontents/DrillDownChartsTest.jsx";
 
 
 
@@ -94,6 +95,16 @@ function Defaulter() {
     const {
         data: { Active_Services },
     } = acceptedNotClockin;
+    const {
+        data: { Short_Term },
+    } = acceptedNotClockin;
+    const {
+        data: { Long_Term },
+    } = acceptedNotClockin;
+    const {
+        data: { Active_Client },
+    } = acceptedNotClockin;
+
 
     // const { Accepted_Not_Clockin } = acceptedNotClockin.data;Name
 
@@ -127,7 +138,7 @@ function Defaulter() {
                 {acceptedNotClockin.length > 0 ? (
                     <div className="grid grid-cols-1 gap-5 mt-24 mb-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 3xl:grid-cols-6">
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
 
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
@@ -160,7 +171,7 @@ function Defaulter() {
                         </div>
 
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -187,7 +198,7 @@ function Defaulter() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -212,7 +223,7 @@ function Defaulter() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -237,7 +248,7 @@ function Defaulter() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -262,7 +273,7 @@ function Defaulter() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -287,7 +298,7 @@ function Defaulter() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -312,7 +323,7 @@ function Defaulter() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -337,7 +348,7 @@ function Defaulter() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -362,7 +373,7 @@ function Defaulter() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -382,12 +393,12 @@ function Defaulter() {
                                 </div>
                                 <div className="text-right">
                                     <p className="text-2xl"></p>
-                                    <p>Short Term Services</p>
+                                    <p>{Short_Term}</p>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                            <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                                 <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                     <svg
                                         width="30"
@@ -406,8 +417,9 @@ function Defaulter() {
                                     </svg>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-2xl"></p>
-                                    <p>Long Term Services</p>
+                                    <p className="text-2xl">{Long_Term}
+                                        gfhdfghfgh</p>
+                                    <p>{Long_Term}</p>
                                 </div>
                             </div>
                         </div>
@@ -424,7 +436,7 @@ function Defaulter() {
 
                 <div className="grid grid-cols-1 gap-5 mt-24 mb-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 3xl:grid-cols-6">
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
 
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
@@ -457,7 +469,7 @@ function Defaulter() {
                     </div>
 
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -484,7 +496,7 @@ function Defaulter() {
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -509,7 +521,7 @@ function Defaulter() {
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -534,7 +546,7 @@ function Defaulter() {
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -559,7 +571,7 @@ function Defaulter() {
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -584,7 +596,7 @@ function Defaulter() {
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -609,7 +621,7 @@ function Defaulter() {
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -634,7 +646,7 @@ function Defaulter() {
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -653,13 +665,13 @@ function Defaulter() {
                                 </svg>
                             </div>
                             <div className="text-right">
-                                <p className="text-2xl"></p>
+                                <p className="text-2xl">{Active_Client}</p>
                                 <p>Active Clients </p>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -678,13 +690,13 @@ function Defaulter() {
                                 </svg>
                             </div>
                             <div className="text-right">
-                                <p className="text-2xl"></p>
+                                <p className="text-2xl">{Short_Term}</p>
                                 <p>Short Term Services</p>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-blue-600 shadow-lg rounded-2xl ">
+                        <div className="flex items-center justify-between p-3 font-medium text-black bg-white border-b-4 border-[#176291] shadow-lg rounded-2xl ">
                             <div className="flex items-center justify-center transition-all duration-300 transform bg-white rounded-full w-14 h-14 group-hover:rotate-12">
                                 <svg
                                     width="30"
@@ -703,7 +715,7 @@ function Defaulter() {
                                 </svg>
                             </div>
                             <div className="text-right">
-                                <p className="text-2xl"></p>
+                                <p className="text-2xl">{Long_Term}</p>
                                 <p>Long Term Services</p>
                             </div>
                         </div>
@@ -745,3 +757,8 @@ function Defaulter() {
 }
 
 export default Defaulter;
+
+
+
+
+
