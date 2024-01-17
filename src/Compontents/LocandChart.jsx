@@ -33,6 +33,10 @@ function LocandChart() {
         fetchData();
     }, []);
 
+
+    console.log(chartData);
+
+
     const dataPoints = chartData.map((value) => ({
         x: new Date(value.schedule_date),
         y: value.Total_Cases,  // Use Total_Cases instead of total_Cases
@@ -44,8 +48,8 @@ function LocandChart() {
     }));
 
 
-    const toogleDataSeries = (e) => {
-
+    const toggleDataSeries = (e) => {
+        console.log("Toggle Data Series:", e);
         const dataSeries = e.dataSeries;
         if (typeof dataSeries.visible === 'undefined' || dataSeries.visible) {
             dataSeries.visible = false;
@@ -53,8 +57,7 @@ function LocandChart() {
             dataSeries.visible = true;
         }
         chartRef.current.render();
-
-    }
+    };
 
 
 
@@ -76,45 +79,45 @@ function LocandChart() {
         },
         legend: {
             cursor: 'pointer',
-            itemclick: toogleDataSeries,
+            itemclick: toggleDataSeries,
             reversed: true,
         },
         data: [
             {
-                type: "stackedBar",
+                type: "stackedColumn100",
                 name: "Accepted Not Clockin",
                 showInLegend: true,
                 color: '#0c84a5',
                 dataPoints: dataPoints.map(point => ({ x: point.x, y: point.acceptedNotClockin })),
             },
             {
-                type: "stackedBar",
+                type: "stackedColumn100",
                 name: "Accepted And Clockin",
                 showInLegend: true,
                 color: '#f6c85f',
                 dataPoints: dataPoints.map(point => ({ x: point.x, y: point.acceptedAndClockin })),
             },
             {
-                type: "stackedBar",
+                type: "stackedColumn100",
                 name: "Total_Cases",
                 color: '#6f4e7c',
                 showInLegend: true,
                 dataPoints: dataPoints.map(point => ({ x: point.x, y: point.y })),
             },
             {
-                type: "stackedBar",
+                type: "stackedColumn100",
                 name: "Clockin_And_NotClockout",
                 color: '#FED9ED',
                 dataPoints: dataPoints.map(point => ({ x: point.x, y: point.clockinAndNotClockout })),
             },
             {
-                type: "stackedBar",
+                type: "stackedColumn100",
                 name: "Unallocated",
                 color: '#9dd867',
                 dataPoints: dataPoints.map(point => ({ x: point.x, y: point.unallocated })),
             },
             {
-                type: "stackedBar",
+                type: "stackedColumn100",
                 name: "activeServices",
                 color: '#025464',
                 dataPoints: dataPoints.map(point => ({ x: point.x, y: point.activeServices })),

@@ -53,6 +53,7 @@ const LocAndStatusCharts = () => {
 
     const getDistinctBranches = () => {
         const branches = new Set();
+        console.log(chartData);
         chartData.forEach((item) => {
             branches.add(item.branch_name);
         });
@@ -74,7 +75,7 @@ const LocAndStatusCharts = () => {
     const toggleDataSeries = (e) => {
         console.log("Toggle Data Series:", e);
         if (e.chart) {
-            e.chart.data.forEach((dataSeries) => {
+            e.chart.options.data.forEach((dataSeries) => {
                 if (dataSeries !== e.dataSeries) {
                     dataSeries.visible = !dataSeries.visible;
                 }
@@ -82,6 +83,8 @@ const LocAndStatusCharts = () => {
             e.chart.render();
         }
     };
+
+
 
     const options = {
         animationEnabled: true,
@@ -103,6 +106,8 @@ const LocAndStatusCharts = () => {
             itemclick: toggleDataSeries,
             reversed: true,
         },
+
+
         data: getStatuses().map((status, index) => ({
             type: "stackedBar",
             showInLegend: true,
@@ -110,6 +115,7 @@ const LocAndStatusCharts = () => {
             color: statusColors[`status${index + 1}`],
             visible: true,
             dataPoints: getDistinctBranches().map((branch) => {
+                console.log
                 const item = chartData.find(
                     (dataItem) => dataItem.branch_name === branch
                 );
@@ -118,6 +124,9 @@ const LocAndStatusCharts = () => {
                     label: branch,
                 };
             }),
+
+
+
         })),
     };
 

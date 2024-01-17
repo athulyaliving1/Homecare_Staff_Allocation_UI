@@ -11,7 +11,6 @@ function DrillDownChartsTest() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-
         // Fetch data using a POST request
         const fetchData = async () => {
             try {
@@ -22,31 +21,36 @@ function DrillDownChartsTest() {
                 setData(response.data.data);
                 console.log(response.data.data);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error("Error fetching data:", error);
             }
         };
 
         fetchData();
     }, []);
 
-    const longTermCount = data.filter((item) => item.service_category_type === 'Long-Term').length;
-    const shortTermCount = data.filter((item) => item.service_category_type === 'Short-Term').length;
+    const longTermCount = data.filter(
+        (item) => item.service_category_type === "Long-Term"
+    ).length;
+    const shortTermCount = data.filter(
+        (item) => item.service_category_type === "Short-Term"
+    ).length;
 
     const chartConfig = {
         chart: {
-            type: 'column',
+            type: "column",
         },
         title: {
-            text: 'Long-Term and Short-Term Service Categories',
+            text: "Service Categories",
+            style: {
+                fontSize: "30px", // Adjust the font size as needed
+            },
         },
         xAxis: {
-            type: 'category',
-
-            
+            type: "category",
         },
         yAxis: {
             title: {
-                text: 'Service Count',
+                text: "Service Count",
             },
         },
         legend: {
@@ -54,18 +58,18 @@ function DrillDownChartsTest() {
         },
         series: [
             {
-                name: 'Total Services',
+                name: "Total Services",
                 colorByPoint: true,
                 data: [
                     {
-                        name: 'Long-Term',
+                        name: "Long-Term",
                         y: longTermCount,
-                        drilldown: 'Long-Term',
+                        drilldown: "Long-Term",
                     },
                     {
-                        name: 'Short-Term',
+                        name: "Short-Term",
                         y: shortTermCount,
-                        drilldown: 'Short-Term',
+                        drilldown: "Short-Term",
                     },
                 ],
             },
@@ -73,28 +77,62 @@ function DrillDownChartsTest() {
         drilldown: {
             series: [
                 {
-                    id: 'Long-Term',
+                    id: "Long-Term",
                     data: data
-                        .filter((item) => item.service_category_type === 'Long-Term')
+                        .filter((item) => item.service_category_type === "Long-Term")
                         .map((item) => [item.display_name, item.service_required]),
                 },
                 {
-                    id: 'Short-Term',
+                    id: "Short-Term",
                     data: data
-                        .filter((item) => item.service_category_type === 'Short-Term')
+                        .filter((item) => item.service_category_type === "Short-Term")
                         .map((item) => [item.display_name, item.service_required]),
                 },
             ],
         },
     };
 
-
-
-
     return (
-        <div>
-            <HighchartsReact highcharts={Highcharts} options={chartConfig} />
-        </div>
+        <>
+            <div>
+                {data.length > 0 ? (
+                    <HighchartsReact highcharts={Highcharts} options={chartConfig} />
+                ) : (
+                    <div className="col-span-4">
+                        <div>
+                            <div role="status" className="animate-pulse">
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+                                <div className="h-2.5 mx-auto bg-gray-300 rounded-full  max-w-[540px] mb-2.5"></div>
+                                <div className="h-2.5 bg-gray-300 rounded-full  max-w-full mb-2.5 mx-auto"></div>
+
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
 

@@ -39,6 +39,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Main />}></Route>
+          <Route path="/home" element={<Main />}></Route>
           <Route path="/defaulter" element={<Defaulter />}></Route>
           <Route path="/skelectonloader" element={<Skeleton />}></Route>
           <Route path="/drildowncharts" element={<Drilldowncharts />}></Route>

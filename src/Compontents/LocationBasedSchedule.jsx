@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CanvasJSReact from "@canvasjs/react-charts";
 import { ErrorBoundary } from "react-error-boundary";
@@ -9,7 +9,7 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function LocationBasedSchedule() {
     const [chartData, setChartData] = useState([]);
-    const chartRef1 = useRef(null);
+    // const chartRef1 = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,27 +46,24 @@ function LocationBasedSchedule() {
             data,
         }));
     };
-    const toggleDataSeries = (e) => {
-        const dataSeries = e.dataSeries;
-        if (typeof dataSeries.visible === "undefined" || dataSeries.visible) {
-            dataSeries.visible = false;
-        } else {
-            dataSeries.visible = true;
-        }
-        chartRef1.current.render();
-    };
+    // ...
 
+    const toggleDataSeries = (e) => {
+        if (e.dataSeries) {
+            e.dataSeries.visible = !e.dataSeries.visible;
+            e.chart.render();
+        }
+    };
 
     const getChartData = () => {
         const distinctChartData = distinctLocations();
 
         const formattedData = distinctChartData.map(({ branchName, data }) => ({
             type: "splineArea",
-
             showInLegend: true,
             name: branchName,
             legendText: branchName,
-
+            visible: true,  // Ensure the series is initially visible
             dataPoints: data.map((entry) => ({
                 x: new Date(entry.formatted_date),
                 y: entry.schedule_count,
@@ -88,16 +85,15 @@ function LocationBasedSchedule() {
             },
             legend: {
                 cursor: "pointer",
-                click: toggleDataSeries,
+                itemclick: toggleDataSeries,
                 reversed: true,
-
-
             },
             data: formattedData,
         };
     };
 
-    console.log(chartData);
+    // ...
+
 
     console.log(chartData);
 
