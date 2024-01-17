@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./Main";
 import Defaulter from "./Defaulter";
@@ -14,16 +13,6 @@ import LocationBasedSchedule from "./Compontents/LocationBasedSchedule";
 
 
 
-
-/**
- *
- *
- * @return {*} 
-/**
- *
- *
- * @return {*} 
- */
 function App() {
   return (
     <BrowserRouter>
